@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Interfaccia{
     public static void main(String[] args) {
 
-        Scanner s = new Scanner(System.in);         //genero scanner
+        Scanner scanner = new Scanner(System.in);         //genero scanner
 
         Admin a1 = new Admin("Eleonora", 1234); //genero ADMIN
 
@@ -29,7 +29,7 @@ public class Interfaccia{
             System.out.println("2 - Registrati");
             System.out.println("3 - Esci");
             System.out.print("digita il numero:   ");
-            int risposta = s.nextInt();
+            int risposta = scanner.nextInt();
 
             //esegui la richiesta dell'utente
 
@@ -42,26 +42,26 @@ public class Interfaccia{
                         boolean utenteEsiste = false;
 
 
-                        do {
+                        while (tentativi >= 0 && utenteEsiste==false){
                             System.out.println("inserire il nome utente");
-                            guessNome = s.nextLine();
+                            guessNome = scanner.nextLine();
+                            System.out.println("utente inserito");
 
                             for (Utente utente : ListaUtenti) {
                                 if (guessNome.equals(utente.getNome())) {
                                     System.out.println("l'utente esiste");
                                     utenteEsiste = true;
+                                }else{
+                                    System.out.println("l'utente non esiste");
                                 }
+                    
                             }
-
-                            System.out.println("l'utente non esiste");
-
-
-                        } while (tentativi >0 && utenteEsiste==false);
+                        }
 
                         if (utenteEsiste) {
                             do {
                                 System.out.println("inserire il PIN");
-                                guessPIN = s.nextInt();
+                                guessPIN = scanner.nextInt();
                                 tentativi--;
                             } while (tentativi >0 && guessPIN != a1.getPIN());
                             
@@ -71,6 +71,7 @@ public class Interfaccia{
                     
                             } else {
                                 System.out.println("accesso negato");
+                                                                                                                    //qua potenzialmente potrei fare chiudere il programma
                             }
                             
                         } 
@@ -79,12 +80,27 @@ public class Interfaccia{
 
 
 
-                /*case 2:
-                    c1.deposita();
+                case 2:
+                    //registro il nome e il pin del nuovo account scelti dall'utente nelle variabili nuovoNome e nuovoPIN
+                    String nuovoNome;
+                    int nuovoPIN;
+                    System.out.println("scegli un nome per il tuo account");
+                    nuovoNome = scanner.nextLine();
+                    System.out.println("scegli un PIN per il tuo nuovo account");
+                    nuovoPIN = scanner.nextInt();
+
+                    //creo un nuovo oggetto Utente passando al costruttore nuovoNome e nuovoPIN
+                    Utente utente = new Utente(nuovoNome, nuovoPIN);
+                    ListaUtenti.add(utente);
+                    System.out.println("nuovo utente " + nuovoNome + " inserito");
+                
+                
                     break;
+
+
                 case 3:
                     System.out.println("Arrivederci!");
-                    System.exit(0);*/
+                    System.exit(0);
 
             }
 
