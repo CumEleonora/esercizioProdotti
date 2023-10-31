@@ -21,7 +21,7 @@ public class Interfaccia{
 
         //fase 1: primo menu (accedi/registrati/exit)
 
-        while (accesso = false) {                                   //l'azione si deve ripetere finchè non è stato fatto un accesso. Solo allora si può passare alla fase 2 (menu successivo)
+        while (accesso == false) {                                   //l'azione si deve ripetere finchè non è stato fatto un accesso. Solo allora si può passare alla fase 2 (menu successivo)
 
              //stampa menu e fai scegliere l'azione all'utente
             System.out.println();
